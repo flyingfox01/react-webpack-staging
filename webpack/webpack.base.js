@@ -37,15 +37,12 @@ module.exports = {
   ],
   module: {
     rules: [{
-      test: /\.css$/,// css后缀文件
-      use: ['style-loader', 'css-loader']// 从右向左解析原则
-    }, {
       test: /\.less$/,// css后缀文件
       use: [
         devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
         'css-loader',
         {
-          loader:'postcss-loader',
+          loader: 'postcss-loader',
           // 配置参数
           options:{
             postcssOptions:{
@@ -64,63 +61,39 @@ module.exports = {
                 ]
              }
           }
-        }, 
-        'less-loader'
+        },
+        'less-loader', 
+        {
+          loader: "thread-loader",
+          options: {
+            workerParallelJobs: 2,
+          },
+        }
        ]// 从右向左解析原则
     },
     {
       test: /\.(jpe?g|png|gif)$/i, //图片文件
-      use: [
-        {
-          loader: 'url-loader',
-          options: {
-            limit: 10240,
-            fallback: {
-              loader: 'file-loader',
-              options: {
-                  name: 'img/[name].[contenthash:8].[ext]'
-              }
-            }
-          }
-        }
-      ]
+      type: "asset/resource",
+      generator: { 
+        filename: 'img/[name].[contenthash:8].[ext]' 
+      }
     },
     {
       test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/, //媒体文件
-      use: [
-        {
-          loader: 'url-loader',
-          options: {
-            limit: 10240,
-            fallback: {
-              loader: 'file-loader',
-              options: {
-                name: 'media/[name].[contenthash:8].[ext]'
-              }
-            }
-          }
-        }
-      ]
+      type: "asset/resource",
+      generator: { 
+        filename: 'media/[name].[contenthash:8].[ext]' 
+      }
     },
     {
       test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i, // 字体
-      use: [
-        {
-          loader: 'url-loader',
-          options: {
-            limit: 10240,
-            fallback: {
-              loader: 'file-loader',
-              options: {
-                name: 'fonts/[name].[contenthash:8].[ext]'
-              }
-            }
-          }
-        }
-      ]
+      type: "asset/resource",
+      generator: { 
+        filename: 'fonts/[name].[contenthash:8].[ext]' 
+      }
     },
     { 
-      test:/\.js$/, 
+      test: /\.js$/, 
       use:{ 
         loader:'babel-loader', 
         options:{  
@@ -130,6 +103,7 @@ module.exports = {
           ] 
         }
       }, 
+      include: path.resolve(__dirname, '../src'),
       exclude: /[\\/]node_modules[\\/]/
     },
   ]}
