@@ -2,8 +2,8 @@ const BaseConfig = require('./webpack.base.js')
 const WebpackMerge = require('webpack-merge')
 
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
-
-module.exports = WebpackMerge.merge(BaseConfig, {
+ 
+const config = WebpackMerge.merge(BaseConfig, {
   mode: 'production',
   optimization: {
     minimizer: [
@@ -22,3 +22,5 @@ module.exports = WebpackMerge.merge(BaseConfig, {
     }
   }
 })
+
+module.exports = config

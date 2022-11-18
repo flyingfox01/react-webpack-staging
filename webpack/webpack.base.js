@@ -7,6 +7,9 @@ const devMode = process.argv.indexOf('--mode=production') === -1;
 
 module.exports = {
   mode: 'development',
+  cache: {
+    type: "filesystem", // 使用文件缓存
+  },
   entry: {
     page1: ["@babel/polyfill", path.resolve(__dirname, '../src/page1.js')],
     page2: ["@babel/polyfill", path.resolve(__dirname, '../src/page2.js')]
