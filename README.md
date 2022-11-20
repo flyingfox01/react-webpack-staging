@@ -5,7 +5,7 @@ react + webpack脚手架
 
 * 介绍npm包的发布流程。
 * 教你如何搭建一个简单的webpack项目。
-* 配置一个react项目脚手架。
+* 配置一个ts + react18项目脚手架。
 * 如何优化webpack配置。
 * 手写loader、plugin等。
 

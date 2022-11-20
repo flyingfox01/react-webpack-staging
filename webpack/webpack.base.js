@@ -77,6 +77,11 @@ module.exports = {
     {
       test: /\.(jpe?g|png|gif)$/i, //图片文件
       type: "asset/resource",
+      parser: {
+        dataUrlCondition: {
+          maxSize: 10 * 1024, // 小于10kb转base64位
+        }
+      },
       generator: { 
         filename: 'img/[name].[contenthash:8].[ext]' 
       }
@@ -112,7 +117,3 @@ module.exports = {
     },
   ]}
 }
-
-
-
- 
