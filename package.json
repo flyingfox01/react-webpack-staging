@@ -6,7 +6,10 @@
   "scripts": {
     "build": "webpack --config webpack/webpack.prod.js",
     "analysis": "webpack --config webpack/webpack.analysis.js",
-    "dev": "webpack-dev-server --config webpack/webpack.dev.js --open"
+    "dev": "webpack-dev-server --config webpack/webpack.dev.js --open",
+    "commitlint": "commitlint --config commitlint.config.js -e -V",
+    "prepare": "husky install",
+    "lint": "lint-staged"
   },
   "keywords": [
     "webpack",
@@ -25,6 +28,8 @@
     "@babel/preset-env": "^7.20.2",
     "@babel/preset-react": "^7.18.6",
     "@babel/preset-typescript": "^7.18.6",
+    "@commitlint/cli": "^17.2.0",
+    "@commitlint/config-conventional": "^17.2.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.9",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.9",
@@ -38,6 +43,7 @@
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.2",
     "css-minimizer-webpack-plugin": "^4.2.2",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.28.0",
     "eslint-config-standard-with-typescript": "^23.0.0",
     "eslint-plugin-import": "^2.26.0",
@@ -48,8 +54,10 @@
     "glob": "^8.0.3",
     "glob-all": "^3.3.1",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "^8.0.2",
     "less": "^4.1.3",
     "less-loader": "^11.1.0",
+    "lint-staged": "^13.0.3",
     "mini-css-extract-plugin": "^2.6.1",
     "os": "^0.1.2",
     "postcss-loader": "^7.0.1",
