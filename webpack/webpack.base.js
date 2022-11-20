@@ -7,12 +7,15 @@ const devMode = process.argv.indexOf('--mode=production') === -1;
 
 module.exports = {
   mode: 'development',
+  resolve: {
+    extensions: ['.js', '.tsx', '.ts']
+  },
   cache: {
     type: "filesystem", // 使用文件缓存
   },
   entry: {
-    page1: ["@babel/polyfill", path.resolve(__dirname, '../src/page1.js')],
-    page2: ["@babel/polyfill", path.resolve(__dirname, '../src/page2.js')]
+    page1: ["@babel/polyfill", path.resolve(__dirname, '../src/page1.tsx')],
+    page2: ["@babel/polyfill", path.resolve(__dirname, '../src/page2.tsx')]
   },
   output: {
     filename: '[name].[chunkhash:8].js',
@@ -93,13 +96,14 @@ module.exports = {
       }
     },
     { 
-      test: /\.js$/, 
+      test: /\.(t|j)(s|sx)$/, 
       use:{ 
         loader:'babel-loader', 
         options:{  
           presets:[
             '@babel/preset-react',
-            '@babel/preset-env'
+            '@babel/preset-env',
+            "@babel/preset-typescript"
           ] 
         }
       }, 
