@@ -8,7 +8,11 @@ const devMode = process.argv.indexOf('--mode=production') === -1;
 module.exports = {
   mode: 'development',
   resolve: {
-    extensions: ['.js', '.tsx', '.ts']
+    alias: {
+      '@': path.join(__dirname, '../src')
+    },
+    extensions: ['.js', '.tsx', '.ts'],
+    modules: [path.resolve(__dirname, '../node_modules')], // 查找第三方模块只在本项目的node_modules中查找
   },
   cache: {
     type: "filesystem", // 使用文件缓存
